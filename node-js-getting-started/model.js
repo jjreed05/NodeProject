@@ -1,8 +1,10 @@
 const pg = require('pg')
 
+const pool = new pg.Pool(process.env.DATABASE_URL)
+
 function getUser(req, res, next){
     console.log('Getting Credentials')
-    pg.connect(process.env.DATABASE_URL, function (err, client, done){
+    pool.connect(function (err, client, done){
         if (err) {
             return console.log("Error fetching from pool")
         }
@@ -20,7 +22,7 @@ function getUser(req, res, next){
 
 function getEntry(req, res, next){
     console.log('Getting Credentials')
-    pg.connect(process.env.DATABASE_URL, function (err, client, done){
+    pool.connect(function (err, client, done){
         if (err) {
             return console.log("Error fetching from pool")
         }
