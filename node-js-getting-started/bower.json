@@ -1,0 +1,26 @@
+{
+  "name": "js-getting-started",
+  "description": "A sample Node.js app using Express 4",
+  "main": "index.js",
+  "authors": [
+    "Jason Reed"
+  ],
+  "license": "UNLICENSED",
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "homepage": "https://github.com/heroku/node-js-getting-started",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "public/bower_components"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.0.0"
+  }
+}
