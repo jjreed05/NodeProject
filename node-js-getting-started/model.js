@@ -1,5 +1,12 @@
+//const { Client } = require('pg')
 const pg = require('pg')
-const config = 'postgres://qvoldvoweajcmz:d48c38e38adaea162e827eb72f4f244cbfd3f0cf57e07cb3eb5808671d873a79@ec2-54-163-246-193.compute-1.amazonaws.com:5432/deq1s8sdg5mfhj'
+const config = {
+    database: 'journaldb',
+    user: 'nodeuser',
+    password: '2319',
+    port: '5432',
+}
+
 const pool = new pg.Pool(config)
 
 function getUser(req, res, next){
@@ -32,7 +39,7 @@ function getEntry(req, res, next){
             if (err){
                 return console.error('error running the query', err)
             }
-            res.send(result)
+            res.send(JSON.stringify(result.rows[0].entry))
         })
     })
     pool.end()
