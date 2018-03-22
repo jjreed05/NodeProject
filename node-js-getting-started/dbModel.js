@@ -12,22 +12,18 @@ const pool = new Pool({
     ssl: ssl,
 }) 
 
-function getUser(req, res, next){
-    console.log('Getting Credentials')
-    /*pool.connect(function (err, client, done){
+function getUser(user, callback){
+    pool.query('SELECT * FROM users where username = $1::text', [user], function(err, result){
         if (err) {
-            return console.log("Error fetching from pool")
+            callback(null, err)
+            return
         }
-        console.log('Connected to the Database')
-        client.query('SELECT * FROM users WHERE userName = $1', [req.body.username], function(err, result){
-            done()
-            if (err){
-                return console.error('error running the query', err)
-            }
-            res.render('pages/journalPage')
-        })
+        if(result.rows.length == 0){
+            callback(null, 'User not defined')
+            return
+        }
+        callback(null, result)
     })
-    pool.end()*/
 }
 
 function getEntry(callback){

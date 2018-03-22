@@ -12,5 +12,6 @@ express()
     .set('view engine', 'ejs')
     .get('/', (req, res) => res.render('pages/login'))
     .get('/getEntry', dbController.handleJournal)
+    .post('/authenticate', dbController.handleLogin)
     .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
