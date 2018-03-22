@@ -1,22 +1,12 @@
-//For local host
-/*const pg = require('pg')
-const config = {
-    database: 'journaldb',
-    user: 'nodeuser',
-    password: '2319',
-    port: '5432',
-}
-
-const pool = new pg.Pool(config)*/
-
-const {Client} = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true,
-})
+const pg = require('pg')
+const connectionString = process.env.DATABASE_URL || 'postgresql://nodeuser:2319@localhost:5432/journaldb'
+const pool = new pg.Pool({
+    connectionString: connectionString
+}) 
 
 function getUser(req, res, next){
     console.log('Getting Credentials')
-    client.connect(function (err, client, done){
+    /*pool.connect(function (err, client, done){
         if (err) {
             return console.log("Error fetching from pool")
         }
@@ -29,17 +19,29 @@ function getUser(req, res, next){
             res.render('pages/journalPage')
         })
     })
-    client.end()
+    pool.end()*/
 }
 
 function getEntry(req, res, next){
-    console.log('Getting Credentials')
-    client.connect()
-    client.query('SELECT * FROM journals', (err, res) =>{
-        if(err) throw err
-        res.send(res.rows[0].entry)
+    /*console.log('Getting Credentials')
+    pool.connect(function (err, client, done){
+        if (err) {
+            return console.log("Error fetching from pool")
+        }
+        console.log('Connected to the Database')
+        client.query('SELECT * FROM journals', function(err, result){
+            done()
+            if (err){
+                return console.error('error running the query', err)
+            }
+            res.send(JSON.stringify(result.rows[0].entry))
+        })
     })
-    client.end()
+    pool.end()*/
+    pool.query('SELECT * FROM journals', function(err, result){
+        if (err) throw err
+        res.send(JSON.stringify(result.rows[0].entry))
+    })
 }
 
 module.exports = {getUser: getUser, getEntry: getEntry}
