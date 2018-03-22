@@ -30,27 +30,12 @@ function getUser(req, res, next){
     pool.end()*/
 }
 
-function getEntry(req, res, next){
-    /*console.log('Getting Credentials')
-    pool.connect(function (err, client, done){
-        if (err) {
-            return console.log("Error fetching from pool")
-        }
-        console.log('Connected to the Database')
-        client.query('SELECT * FROM journals', function(err, result){
-            done()
-            if (err){
-                return console.error('error running the query', err)
-            }
-            res.send(JSON.stringify(result.rows[0].entry))
-        })
-    })
-    pool.end()*/
+function getEntry(callback){
     pool.query('SELECT * FROM journals', function(err, result){
         if (err) {
             return console.log('Error fetching from pool')
         }
-        res.send(JSON.stringify(result.rows[0].entry))
+        callback(null, result)
     })
 }
 
