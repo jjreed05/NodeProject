@@ -2,8 +2,6 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 const dbController =  require('./dbController.js')
-const cookieParser = require('cookie-parser')
-const session = require('express-session')
 const bodyParser = require('body-parser')
 
 express()
