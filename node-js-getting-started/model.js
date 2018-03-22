@@ -1,8 +1,15 @@
 const { Pool } = require('pg')
 const connectionString = process.env.DATABASE_URL || 'postgresql://nodeuser:2319@localhost:5432/journaldb'
+var ssl = false
+
+// setting the ssl
+if(connectionString == process.env.DATABASE_URL){
+    ssl = true
+}
+
 const pool = new Pool({
     connectionString: connectionString,
-    ssl: true,
+    ssl: ssl,
 }) 
 
 function getUser(req, res, next){
