@@ -1,7 +1,8 @@
-const pg = require('pg')
+const { Pool } = require('pg')
 const connectionString = process.env.DATABASE_URL || 'postgresql://nodeuser:2319@localhost:5432/journaldb'
-const pool = new pg.Pool({
-    connectionString: connectionString
+const pool = new Pool({
+    connectionString: connectionString,
+    ssl: true,
 }) 
 
 function getUser(req, res, next){
@@ -39,7 +40,9 @@ function getEntry(req, res, next){
     })
     pool.end()*/
     pool.query('SELECT * FROM journals', function(err, result){
-        if (err) throw err
+        if (err) {
+            return console.log('Error fetching from pool')
+        }
         res.send(JSON.stringify(result.rows[0].entry))
     })
 }
