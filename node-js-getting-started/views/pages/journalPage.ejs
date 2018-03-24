@@ -1,8 +1,46 @@
 <html>
     <head>
         <title>My Journal</title>
+        <meta charset="utf-8" />
+        <link rel='stylesheet' href='../../bower_components/bootstrap/dist/css/bootstrap.css'/>
+        <link rel='stylesheet' type='text/css' href="/stylesheets/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type='text/javascript' src='/scripts/script.js'></script>
     </head>
     <body>
-        <h1>Hello World</h1>
+        <nav class="navbar navbar-expand-sm bg-dark">
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Link 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Link 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Link 3</a>
+                </li>
+            </ul>
+        </nav>
+        <div class='container-fluid box'>
+            <h3 class="text-white">My Journal Page</h3>
+            <br>
+            <div class='form-group'>
+                <label for='title' class="text-white"><strong>Title:</strong></label>
+                <input type='text' class="form-control" id='entry-title'>
+                <label for='entry' class="text-white"><strong>Entry:</strong></label>
+                <textarea class='form-control' rows='5' id='entry'></textarea>
+                <br>
+                <button type='button' class='btn btn-primary' id='entrySubmit'>Submit</button>
+                <br>
+            </div>
+        </div>
+        <div class='container box'>
+            <h3 class="text-white">Entries</h3>
+            <br>
+            <div id='entry-list'>
+            <!-- Using JQuery to fill this part of the page -->
+            </div>
+        </div>
     </body>
 </html>

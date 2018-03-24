@@ -5,8 +5,16 @@ function handleJournal(req, res){
     console.log('Requesting a journal entry')
     
     dbModel.getEntry(function(err, result){
-        console.log('Journal Entry: ' + result)
-        res.send(JSON.stringify(result.rows[0].entry))
+        res.send(result.rows)
+    })
+}
+
+function handleNewEntry(req, res){
+    console.log('Inserting new entry')
+    console.log(req.body)
+    
+    dbModel.postEntry(req.body, function(err, result){
+        res.send('success')                 
     })
 }
 
@@ -27,4 +35,12 @@ function handleLogin(req, res){
     })
 }
 
-module.exports = {handleJournal: handleJournal, handleLogin: handleLogin}
+function handleDeletion(req, res){
+    console.log("Deleting off the database")
+    var item = req.body
+    dbModel.deleteEntry(item, function(err, result){
+        res.send('success')
+    })
+}
+
+module.exports = {handleJournal: handleJournal, handleNewEntry: handleNewEntry, handleLogin: handleLogin, handleDeletion: handleDeletion}
