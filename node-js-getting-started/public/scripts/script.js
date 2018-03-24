@@ -5,11 +5,12 @@ $(document).ready(function (){
         $.ajax({
             url: '/postEntry',
             type: "POST",
-            data: { title: title, entry: entry }
+            data: { title: title, entry: entry },
+            success: function(){
+                $("#entry-list").empty();
+                getJournals();
+            }
         });
-        // Refresh the list
-        $("#entry-section").empty();
-        getJournals();
     });
     
     getJournals();
@@ -21,6 +22,12 @@ function getJournals(){
         type: "GET",
         dataType: 'json',
         success: function(data) {
+            if(data.length > 0){
+                $("#entry-list").empty();
+            }
+            else{
+                $("#entry-list").append("<div class='card'><h4>No Entries Yet!</h4></div>")
+            }
             $.each(data, function (i, text){
                 console.log(text.entry);
                 // Parsing the date into MM-DD-YYYY format
@@ -32,8 +39,6 @@ function getJournals(){
                 for (i=0; i < 4; i++){
                     date += text.entry_date[i]
                 }
-                
-                $("#entry-section").append("<h3 class='text-white'>Entries</h3><br><div id='entry-list'></div>")
                 
                 // Adding the entries to the page
                 $("#entry-list").append("<div class='card'><h4 class='title'>" 
@@ -57,8 +62,8 @@ function deleteJournal(item){
         url: "/deleteEntry",
         data: { item: item },
         success: function(){
-            // Refreshing the list
-           $("#entry-section").empty();
+            // Refresh the list
+           $("#entry-list").empty();
             getJournals(); 
         }
     })
