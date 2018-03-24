@@ -8,7 +8,7 @@ $(document).ready(function (){
             data: { title: title, entry: entry }
         });
         // Refresh the list
-        $("#entry-list").empty();
+        $("#entry-section").empty();
         getJournals();
     });
     
@@ -33,6 +33,8 @@ function getJournals(){
                     date += text.entry_date[i]
                 }
                 
+                $("#entry-section").append("<h3 class='text-white'>Entries</h3><br><div id='entry-list'></div>")
+                
                 // Adding the entries to the page
                 $("#entry-list").append("<div class='card'><h4 class='title'>" 
                                         + text.title + 
@@ -56,7 +58,7 @@ function deleteJournal(item){
         data: { item: item },
         success: function(){
             // Refreshing the list
-           $("#entry-list").empty();
+           $("#entry-section").empty();
             getJournals(); 
         }
     })
