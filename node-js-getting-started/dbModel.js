@@ -12,17 +12,20 @@ const pool = new Pool({
     ssl: ssl,
 }) 
 
-function getUser(user, callback){
-    pool.query('SELECT * FROM users where username = $1::text', [user], function(err, result){
+// checking to see if we have valid login credentials
+function getUser(user, password, callback){
+    pool.query('SELECT * FROM users WHERE username = $1::text AND userpass = $2::text', [user, password], function(err, result){
         if (err) {
             callback(null, err)
             return
         }
         if(result.rows.length == 0){
-            callback(null, 'User not defined')
+            callback(null, false)
             return
+        }else{
+            callback(null, true) 
         }
-        callback(null, result)
+        
     })
 }
 

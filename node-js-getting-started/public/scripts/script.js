@@ -1,3 +1,4 @@
+// When a user submits an entry. Post the information to the database
 $(document).ready(function (){
     $("#entrySubmit").click(function (){
         var entry = document.getElementById("entry").value;
@@ -16,6 +17,7 @@ $(document).ready(function (){
     getJournals();
 });
 
+// Use Ajax to get entries off the database
 function getJournals(){
     $.ajax({
         url: '/getEntry',
@@ -55,6 +57,7 @@ function getJournals(){
     }); 
 }
 
+// Delete the journal off the database and refresh the section
 function deleteJournal(item){
     console.log(item);
     $.ajax({
