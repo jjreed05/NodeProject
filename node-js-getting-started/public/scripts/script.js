@@ -10,6 +10,8 @@ $(document).ready(function (){
             success: function(){
                 $("#entry-list").empty();
                 getJournals();
+                $("#entry").val("");
+                $("#entry-title").val("");
             }
         });
     });

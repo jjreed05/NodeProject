@@ -7,7 +7,12 @@ $(document).ready(function (){
             type: "POST",
             data: { username: username, password: password },
             success: function(){
-                console.log("success!")
+                $("#user").val("");
+                $("#verifyUser").val("");
+                $("#pass").val("");
+                $("#verifyPass").val("");
+                console.log("success!");
+                alert("You have successfully created an account! Please login.")
             }
         });
     });
