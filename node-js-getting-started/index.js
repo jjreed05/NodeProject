@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 
 
+
 express()
     .use(express.static(path.join(__dirname, 'public')))
     .use(bodyParser.json())
@@ -15,6 +16,7 @@ express()
         resave: false,
         saveUninitialized: false
     }))
+    .use(controller.destroyCache)
     .set('views', path.join(__dirname, 'views'))
     .set('view engine', 'ejs')
     .get('/', (req, res) => res.render('pages/login'))
@@ -23,6 +25,7 @@ express()
     .get('/logout', controller.handleLogout)
     .post('/authenticate', controller.handleLogin)
     .post('/postEntry', controller.handleNewEntry)
+    .post('/createUser', controller.createUser)
     .delete('/deleteEntry', controller.handleDeletion)
     .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
