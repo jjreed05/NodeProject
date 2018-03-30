@@ -65,6 +65,10 @@ function destroyCache(req, res, next){
 }
 
 function createUser(req, res){
+    if(req.body.password.length == 0 || req.body.username.length == 0){
+        console.log("Credentials cannot be empty")
+        return res.send('fail')
+    }
     let hash = bcrypt.hashSync(req.body.password, 10)
     console.log('Creating User: ' + req.body.username)
     console.log('Hashed Password: ' + hash)
