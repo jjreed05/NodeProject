@@ -30,7 +30,9 @@ function handleLogin(req, res){
             res.redirect('/journal')
         }else {
             req.session.loggedIn = false;
-            res.json({success: false});
+            res.redirect('/?valid=false')
+            //res.json({success: false});
+        
         }
     })
     
@@ -65,15 +67,25 @@ function destroyCache(req, res, next){
 }
 
 function createUser(req, res){
+    
     if(req.body.password.length == 0 || req.body.username.length == 0){
         console.log("Credentials cannot be empty")
         return res.send('fail')
     }
-    let hash = bcrypt.hashSync(req.body.password, 10)
-    console.log('Creating User: ' + req.body.username)
-    console.log('Hashed Password: ' + hash)
-    dbModel.newUser(req.body.username, hash, function(err, result){
-        res.send('success')
+    dbModel.getUser(req.body.username, function(err, result, status){
+        console.log('Status: ' + status)
+        if (status == true){
+            console.log('User already exists')
+            return res.json({success: false})
+        }
+        
+        let hash = bcrypt.hashSync(req.body.password, 10)
+        console.log('Creating User: ' + req.body.username)
+        console.log('Hashed Password: ' + hash)
+        dbModel.newUser(req.body.username, hash, function(err, result){
+            return res.json({success: true})
+        })
+        
     })
 }
 

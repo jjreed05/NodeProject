@@ -32,7 +32,7 @@ function getJournals(){
             else{
                 $("#entry-list").append("<div class='card'><h4>No Entries Yet!</h4></div>")
             }
-            $.each(data, function (i, text){
+            $.each(data.reverse(), function (i, text){
                 console.log(text.entry);
                 // Parsing the date into MM-DD-YYYY format
                 var date = '';
@@ -62,14 +62,16 @@ function getJournals(){
 // Delete the journal off the database and refresh the section
 function deleteJournal(item){
     console.log(item);
-    $.ajax({
-        type: "DELETE",
-        url: "/deleteEntry",
-        data: { item: item },
-        success: function(){
-            // Refresh the list
-           $("#entry-list").empty();
-            getJournals(); 
-        }
-    })
+    if (confirm("Are you sure you want to delete this post?") == true){
+        $.ajax({
+            type: "DELETE",
+            url: "/deleteEntry",
+            data: { item: item },
+            success: function(){
+                // Refresh the list
+                $("#entry-list").empty();
+                getJournals(); 
+            }
+        })
+    }
 }
