@@ -24,14 +24,14 @@ $(document).ready(function (){
             $("#passWarning").append("Passwords do not match");
         }
         
-        if(username == 0){
+        if(username.length < 4 ){
             $("#userWarning").empty();
-            $("#userWarning").append("Username cannot be empty");
+            $("#userWarning").append("Username needs to be more than 8 characters");
             return
         }
-        if(password.length == 0){
+        if(password.length < 8){
             $("#passWarning").empty();
-            $("#passWarning").append("Passwords cannot be empty");
+            $("#passWarning").append("Password needs to be more than 8 characters");
             return
         }
         
@@ -52,6 +52,8 @@ $(document).ready(function (){
                         $("#pass").val("");
                         $("#verifyPass").val("");
                         console.log("success!");
+                        $("#userWarning").empty();
+                        $("#passWarning").empty();
                         alert("You have successfully created an account! Please login.");
                     }
                 }

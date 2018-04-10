@@ -9,3 +9,20 @@
 body{
     background-image: url(background.jpg)
 }
+
+.form-actions{
+    margin: 0;
+    text-align: left;
+}
+
+.style-border{
+    border-top: 3px double #8c8b8b;
+}
+.fb-share-button{
+    margin-left: 20px;
+}
+
+.btn{
+    margin-bottom: 20px !important;
+    margin-right: 30px;
+}

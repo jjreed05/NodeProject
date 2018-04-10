@@ -34,6 +34,7 @@ function getJournals(){
             }
             $.each(data.reverse(), function (i, text){
                 console.log(text.entry);
+                console.log(text.entry_date)
                 // Parsing the date into MM-DD-YYYY format
                 var date = '';
                 for (i=5; i < 10; i++){
@@ -44,16 +45,22 @@ function getJournals(){
                     date += text.entry_date[i]
                 }
                 
+                /*$("#entry-list").append('<div class=row><div class="card"><div id="postlist"><div class="panel"><div class="panel-heading"><div class="text-left"><div class="row"><div class="col-sm-9"><h3 class="pull-left">'
+                                        + text.title + '</h3></div><div class="col-sm-3"><h4 class="pull-right"><small><em>'
+                                        + date + '</em></small></h4></div></div></div></div><div class="panel-body">'
+                                        + text.entry + '</div></div></div>')*/
+                
                 // Adding the entries to the page
-                $("#entry-list").append("<div class='card'><h4 class='title'>" 
+                $("#entry-list").append("<div class='card'><h4 class='title text-left'>" 
                                         + text.title + 
-                                        "</h4><h5>" 
+                                        "</h4><h5 class ='text-right'>" 
                                         + date + 
-                                        "</h5><div class='card-body'>" 
+                                        "</h5><br><div class='card-body border rounded'><em>" 
                                         + text.entry + 
-                                        "<br><br><button type='button' class='btn btn-danger' id='delete' onclick='deleteJournal("
+                                        "</em></div><br><br><div class='form-actions'><button type='button' class='btn btn-danger btn-sm' id='delete' onclick='deleteJournal("
                                         + text.id +
-                                        ")'>Delete</button></div></div><br>");
+                                        ")'>Delete</button><a href='https://twitter.com/intent/tweet?text=" 
+                                        + text.entry.split(" ").join('%20') + "' class='twitter-share-button' data-size='large' data-show-count='false'>Tweet</a><script async src='https://platform.twitter.com/widgets.js' charset='utf-8'></script></div></div></div><br>");
             });
         }
     }); 
@@ -75,3 +82,4 @@ function deleteJournal(item){
         })
     }
 }
+

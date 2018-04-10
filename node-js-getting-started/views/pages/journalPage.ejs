@@ -14,12 +14,14 @@
             <!-- Links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout" data-target="#myModal" data-toggle="modal">Logout</a>
+                    <a class="nav-link" href="/logout" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-user"></span>Logout</a>
                 </li>
             </ul>
         </nav>
-        <div class='container-fluid box'>
-            <h3 class="text-white">My Journal Page</h3>
+        <br>
+        <br>
+        <div class='container panel panel-default'>
+            <h3 class="text-white">Create A Journal</h3>
             <br>
             <div class='form-group'>
                 <label for='title' class="text-white"><strong>Title:</strong></label>
@@ -31,12 +33,18 @@
                 <br>
             </div>
         </div>
-        <div class='container box'>
-            <h3 class="text-white">Entries</h3>
+        <br>
+        <hr class='container style-border'>
+        <br>
+
+        <div class='container panel panel-default'>
+            <h3 class='text-white'>Entries</h3>
             <br>
-            <div id='entry-list'>
+            <div class='panel-body' id='entry-list'>
             <!-- Using JQuery to fill this part of the page -->
             </div>
         </div>
+        <br>
+        <br>
     </body>
 </html>
