@@ -1,4 +1,5 @@
 $(document).ready(function (){
+    if(window.location.href == 'http://localhost:5000/?valid=false' || window.location.href == 'https://mysterious-woodland-93448.herokuapp.com/?valid=false'){
     $.urlParam = function(name){
 	   var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
 	   return results[1] || 0;
@@ -7,6 +8,7 @@ $(document).ready(function (){
     console.log($.urlParam('valid'));
     if ($.urlParam('valid') == 'false'){
         $("#invalid").append("Invalid Username or Password")
+    }
     }
     
     $("#signUp").click(function(){
