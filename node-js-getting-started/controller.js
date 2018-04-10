@@ -29,10 +29,10 @@ function handleLogin(req, res){
             req.session.loggedIn = true;
             res.redirect('/journal')
         }else {
+            console.log("Username or password does not exist!")
             req.session.loggedIn = false;
             res.redirect('/?valid=false')
-            //res.json({success: false});
-        
+    
         }
     })
     

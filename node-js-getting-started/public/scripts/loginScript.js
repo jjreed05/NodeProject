@@ -4,10 +4,10 @@ $(document).ready(function (){
 	   return results[1] || 0;
     }
     
-    /*console.log($.urlParam('valid'));
+    console.log($.urlParam('valid'));
     if ($.urlParam('valid') == 'false'){
         $("#invalid").append("Invalid Username or Password")
-    }*/
+    }
     
     $("#signUp").click(function(){
         var username = document.getElementById('user').value;
