@@ -20,7 +20,7 @@
     "jquery": "^3.3.1",
     "npm": "^5.7.1",
     "pg": "^7.4.1",
-    "sequelize": "^4.37.1",
+    "sequelize": "^5.15.1",
     "session": "^0.1.0"
   },
   "devDependencies": {
